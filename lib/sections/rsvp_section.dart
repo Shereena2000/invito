@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +32,10 @@ class _RsvpSectionState extends State<RsvpSection> {
   }
 
   Future<void> _submit() async {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) {
+      setState(() => _error = 'Please fill in the required fields above.');
+      return;
+    }
 
     setState(() {
       _submitting = true;
@@ -49,7 +54,16 @@ class _RsvpSectionState extends State<RsvpSection> {
         },
       );
 
-      if (response.statusCode == 200) {
+      Map<String, dynamic>? data;
+      try {
+        data = jsonDecode(response.body) as Map<String, dynamic>;
+      } catch (_) {
+        data = null;
+      }
+      final success = data?['success'];
+      final ok = response.statusCode == 200 && (success == true || success == 'true');
+
+      if (ok) {
         setState(() {
           _submitted = true;
           _submitting = false;
@@ -57,7 +71,7 @@ class _RsvpSectionState extends State<RsvpSection> {
       } else {
         setState(() {
           _submitting = false;
-          _error = 'Something went wrong. Please try again.';
+          _error = (data?['message'] as String?) ?? 'Something went wrong. Please try again.';
         });
       }
     } catch (_) {
