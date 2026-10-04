@@ -5,14 +5,21 @@ import '../theme/app_theme.dart';
 import '../widgets/elegant_button.dart';
 import '../widgets/reveal_on_scroll.dart';
 
-IconData _iconFor(String title) {
-  final t = title.toLowerCase();
-  if (t.contains('sangeet')) return Icons.music_note_outlined;
-  if (t.contains('gulabi')) return Icons.home_outlined;
-  if (t.contains('thalikettu')) return Icons.temple_hindu_outlined;
-  if (t.contains('ceremony')) return Icons.favorite_outline;
-  if (t.contains('reception')) return Icons.celebration_outlined;
-  return Icons.event_outlined;
+IconData _iconFor(String id) {
+  switch (id) {
+    case 'sangeet':
+      return Icons.music_note_outlined;
+    case 'gulabi':
+      return Icons.home_outlined;
+    case 'thalikettu':
+      return Icons.temple_hindu_outlined;
+    case 'ceremony':
+      return Icons.favorite_outline;
+    case 'reception':
+      return Icons.celebration_outlined;
+    default:
+      return Icons.event_outlined;
+  }
 }
 
 class TimelineSection extends StatelessWidget {
@@ -24,7 +31,8 @@ class TimelineSection extends StatelessWidget {
     final isMobile = AppBreakpoints.isMobile(width);
     final isTablet = AppBreakpoints.isTablet(width);
     final zigzag = !isMobile && !isTablet;
-    final events = WeddingData.timelineEvents;
+    final group = Uri.base.queryParameters['group'];
+    final events = WeddingData.eventsForGroup(group);
 
     return Container(
       color: AppColors.stone,
@@ -202,7 +210,7 @@ class _LinearTile extends StatelessWidget {
         children: [
           Column(
             children: [
-              _EventNode(icon: _iconFor(event.title)),
+              _EventNode(icon: _iconFor(event.id)),
               if (!isLast)
                 Expanded(
                   child: Container(
@@ -249,7 +257,7 @@ class _ZigzagTile extends StatelessWidget {
               width: 80,
               child: Column(
                 children: [
-                  _EventNode(icon: _iconFor(event.title)),
+                  _EventNode(icon: _iconFor(event.id)),
                   if (!isLast)
                     Expanded(
                       child: Container(

@@ -22,11 +22,12 @@ class RevealOnScroll extends StatefulWidget {
 
 class _RevealOnScrollState extends State<RevealOnScroll> {
   bool _visible = false;
+  final _visibilityKey = UniqueKey();
 
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
-      key: ObjectKey(widget),
+      key: _visibilityKey,
       onVisibilityChanged: (info) {
         if (!_visible && info.visibleFraction > 0.15) {
           setState(() => _visible = true);
