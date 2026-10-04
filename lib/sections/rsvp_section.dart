@@ -122,7 +122,7 @@ class _RsvpSectionState extends State<RsvpSection> {
 
   Widget _buildForm(bool isMobile) {
     return Form(
-      key: const ValueKey('form'),
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
