@@ -14,7 +14,7 @@ class WeddingData {
   /// RSVP submissions are emailed here via FormSubmit (formsubmit.co).
   /// First submission requires clicking the activation link FormSubmit
   /// sends to this address.
-  static const rsvpEmail = 'shereenajamezz@gmail.com';
+  static const rsvpEmail = 'sreelakshmivm.snm18ce018@gmail.com';
 
   static const heroImage = 'assets/images/hero.jpeg';
 
@@ -35,7 +35,7 @@ class WeddingData {
     id: 'sangeet',
     title: 'Sangeet Night',
     date: 'October 29, 2026',
-    time: '6:00 PM – 9:00 PM',
+    time: '6:00 PM onwards',
     location: 'Blue Waters Event Hub, Mattupuram (Mannam)',
     description: 'An evening of music, dance and celebrations.',
     mapsUrl: 'https://share.google/ZnLuiXPzkQ7hZEJOO',
@@ -45,7 +45,7 @@ class WeddingData {
     id: 'gulabi',
     title: 'Gulabi',
     date: 'October 30, 2026',
-    time: '6:00 PM – 9:00 PM',
+    time: '6:00 PM onwards',
     location: 'At Home',
     description: 'Gulabi celebration at home.',
     mapsUrl: 'https://maps.app.goo.gl/kyUhb57N61oiy3V79?g_st=iw',
