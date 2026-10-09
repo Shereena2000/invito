@@ -47,7 +47,7 @@ class WeddingData {
     date: 'October 30, 2026',
     time: 'From 6:00 PM',
     location: 'At Home',
-    description: 'Gulabi celebration at home.',
+    description: 'Gulabi celebration at home. Theme: Red — dress to match!',
     mapsUrl: 'https://maps.app.goo.gl/kyUhb57N61oiy3V79?g_st=iw',
   );
 
